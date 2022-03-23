@@ -34,10 +34,10 @@ function metadata(sample_id) {
     console.log(demo_array);
     
 // Displaying key-value pair that is selected
-
     var result= demo_array[0];
     console.log(result);
     meta.html("");
+
     // using object entries to obtain value-key pairs
     Object.entries(result).forEach(([key, value]) => {
       meta.append("h6").text(`${key}:${value}`);
@@ -68,12 +68,17 @@ function buildBarChart(sample)
         let xValues = sample_values.slice(0,10);
         let textLabels = otu_labels.slice(0,10);
 
+        //creating the parameters for the chart
         let barChart = {
             y: yTicks.reverse(),
             x: xValues.reverse(),
             text: textLabels.reverse(),
             type: "bar",
-            orientation: "h"
+            orientation: "h",
+            marker: {
+              color: 'rgba(32,243,200,0.75)',
+              width: 1
+            }
         }
         
         let layout = {
@@ -105,7 +110,6 @@ function buildBubbleChart(sample)
         //console.log(otu_ids);
 
         //build the bubble chart
-        
         let bubbleChart = {
             y: sample_values,
             x: otu_ids,
@@ -114,10 +118,11 @@ function buildBubbleChart(sample)
             marker: {
                 size: sample_values,
                 color: otu_ids,
-                colorscale: "Earth"
+                colorscale: "Electric"
             }
         }
         
+        //creating the parameters for the chart
         let layout = {
             title: "Microbial Cultures Per Sample",
             hovermode: "closest",
